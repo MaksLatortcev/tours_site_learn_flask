@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block main %}
+  <main class="container mt-3">
+    <!-- HERO -->
+    <section class="jumbotron text-center mt-4" style="background: url({{ url_for('static', filename='images/main.jpg') }}); ">  <!--  Я так и не смог придумать, как сделать фон прозрачным, ни через color, ни через background-color...-->
+      <h1 class="display-4">Всякие туры</h1>
+      <p class="lead">{{ subtitle }}</p>
+      <p class="mt-5 w-50 mx-auto">{{ description }}</p>
+    </section>
+ <!-- CARDS -->
+    <div class="row mt-5">
+        {% for key, val in tours.items() %}
+      <div class="col-4">
+        <div class="card mb-4">
+          <div class="embed-responsive embed-responsive-16by9">
+            <img class="card-img-top embed-responsive-item" src= {{ val.picture }} alt="" />
+          </div>
+          <div class="card-body">
+            <h2 class="h5 card-title">{{ val.title }} {{ val.stars }}★</h2>
+            <p class="card-text">{{ val.description|truncate(150) }}</p>
+            <b class="card-text">{{ val.country }} из {{ name_departure[val.departure] }} {{ val.nights }} ночей</b>
+            <a href="/tours/{{ key }}/" class="btn btn-sm btn-primary">Купить {{ val.price }}</a>
+          </div>
+        </div>
+      </div>
+       {% endfor %}
+    </div>
+  </main>
+
+{% endblock %}
