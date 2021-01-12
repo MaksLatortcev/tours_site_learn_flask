@@ -67,4 +67,7 @@ def internal_error(error):
 
     return output
 
-app.run()
+
+
+if __name__ == '__main__':
+    app.run()
